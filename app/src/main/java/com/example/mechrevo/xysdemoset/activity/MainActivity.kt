@@ -1,5 +1,6 @@
 package com.example.mechrevo.xysdemoset.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setListener()
+        startActivity(Intent(this,DemoActivity::class.java))
     }
 
     fun setListener() {
@@ -33,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (v === statusChangeView) {
             statusChangeView.onHandleText()
         } else if (v === mButton) {
-                ll_love.addLoveView()
+
         }
     }
 }
