@@ -40,7 +40,6 @@ public class LoveLayout extends RelativeLayout{
 	
 	public LoveLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		
 		this.context = context;
 		initView();
 	}
@@ -68,26 +67,23 @@ public class LoveLayout extends RelativeLayout{
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		// TODO Auto-generated method stub
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		mWidth = getMeasuredWidth();
 		mHeight = getMeasuredHeight();
 	}
 	
 	public void addLoveView() {
-		// TODO Auto-generated method stub
 		final ImageView iv = new ImageView(context);
 		iv.setLayoutParams(params);
 		iv.setImageDrawable(icons[new Random().nextInt(4)]);
 		addView(iv);
-		
+
 		// 开启动画，并且用完销毁
 		AnimatorSet set = getAnimatorSet(iv);
 		set.start();
 		set.addListener(new AnimatorListenerAdapter() {
 			@Override
 			public void onAnimationEnd(Animator animation) {
-				// TODO Auto-generated method stub
 				super.onAnimationEnd(animation);
 				removeView(iv);
 			}
@@ -113,7 +109,7 @@ public class LoveLayout extends RelativeLayout{
 
 		// 贝塞尔曲线动画
 		ValueAnimator bzier = getBzierAnimator(iv);
-		
+
 		AnimatorSet set2 = new AnimatorSet();
 		set2.playSequentially(set, bzier);
 		set2.setTarget(iv);
@@ -124,7 +120,6 @@ public class LoveLayout extends RelativeLayout{
 	 * 贝塞尔动画
 	 * */
 	private ValueAnimator getBzierAnimator(final ImageView iv) {
-		// TODO Auto-generated method stub
 		PointF[] PointFs = getPointFs(iv); // 4个点的坐标
 		BasEvaluator evaluator = new BasEvaluator(PointFs[1], PointFs[2]);
 		ValueAnimator valueAnim = ValueAnimator.ofObject(evaluator, PointFs[0], PointFs[3]);
@@ -132,7 +127,6 @@ public class LoveLayout extends RelativeLayout{
 			
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
-				// TODO Auto-generated method stub
 				PointF p = (PointF) animation.getAnimatedValue();
 				iv.setX(p.x);
 				iv.setY(p.y);
@@ -150,7 +144,6 @@ public class LoveLayout extends RelativeLayout{
 	}
 
 	private PointF[] getPointFs(ImageView iv) {
-		// TODO Auto-generated method stub
 		PointF[] PointFs = new PointF[4];
 		PointFs[0] = new PointF(); // p0
 		PointFs[0].x = (mWidth- params.width)/ 2;
@@ -159,7 +152,7 @@ public class LoveLayout extends RelativeLayout{
 		PointFs[1] = new PointF(); // p1
 		PointFs[1].x = new Random().nextInt(mWidth);  
 		PointFs[1].y = new Random().nextInt(mHeight /2) + mHeight / 2 + params.height;
-		
+
 		PointFs[2] = new PointF(); // p2
 		PointFs[2].x = new Random().nextInt(mWidth);  
 		PointFs[2].y = new Random().nextInt(mHeight /2);
@@ -169,4 +162,5 @@ public class LoveLayout extends RelativeLayout{
 		PointFs[3].y = 0;
 		return PointFs;
 	}
+
 }
