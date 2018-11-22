@@ -1,7 +1,10 @@
 package com.example.mechrevo.xysdemoset.activity;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,10 +14,12 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
+import android.view.animation.AnimationSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -147,10 +152,10 @@ public class DemoActivity extends AppCompatActivity {
 
         ObjectAnimator translaX = ObjectAnimator.ofFloat(tvMove, "translationX", 0, DisplayUtils.dip2px(this, 28));
 
-        ObjectAnimator llColorX = ObjectAnimator.ofFloat(llColorContainer, "scaleX", 1f, 0.7f);
+        final ObjectAnimator llColorX = ObjectAnimator.ofFloat(llColorContainer, "scaleX", 1f, 0.7f);
 
         final AnimatorSet animatorSet = new AnimatorSet();
-        animatorSet.playTogether(ivXAnim, ivYAnim, translaX,llColorX,llMoveX);
+        animatorSet.playTogether(ivXAnim, ivYAnim, translaX, llColorX, llMoveX);
         animatorSet.start();
 
 
@@ -165,8 +170,31 @@ public class DemoActivity extends AppCompatActivity {
         ObjectAnimator llColorXR = ObjectAnimator.ofFloat(llColorContainer, "scaleX", 1f, 1.425f);
 
         final AnimatorSet animatorSetR = new AnimatorSet();
-        animatorSetR.playTogether(ivXAnimR, ivYAnimR, translaXR,llColorXR,llMoveXR);
+        animatorSetR.playTogether(ivXAnimR, ivYAnimR, translaXR, llColorXR, llMoveXR);
         animatorSetR.setDuration(300);
+
+        llColorX.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedFraction = animation.getAnimatedFraction();
+                Log.d("BobX",animatedFraction+"  ");
+                if (animatedFraction > 0.5f) {
+                    llColorContainer.setBackgroundResource(R.drawable.bg_left);
+                }
+            }
+        });
+
+        llColorXR.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float animatedFraction = animation.getAnimatedFraction();
+                Log.d("BobX",animatedFraction+"Rever");
+
+                if (animatedFraction< 0.5f) {
+                    llColorContainer.setBackgroundResource(R.drawable.bg);
+                }
+            }
+        });
 
 
         llColorContainer.setOnClickListener(new View.OnClickListener() {
