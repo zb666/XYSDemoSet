@@ -4,7 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.DemoActivity">
+
+    <TextView
+        android:id="@+id/tvSwitch"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_40"
+        android:gravity="center"
+        android:text="开关" />
+
+    <LinearLayout
+        android:id="@+id/llColorContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/bg_left"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/llMove"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/ivFocus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_guanzhu" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvFocus"
+            android:text="+关注"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
+    <ViewStub
+        android:id="@+id/viewstub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout="@layout/demo_vb" />
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/forever"
@@ -12,17 +70,17 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tabLayout"
-                app:tabSelectedTextColor="@android:color/holo_orange_light"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 app:tabIndicatorColor="@color/colorAccent"
-                app:tabIndicatorHeight="10dp"/>
+                app:tabIndicatorHeight="10dp"
+                app:tabSelectedTextColor="@android:color/holo_orange_light" />
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/viewpager"

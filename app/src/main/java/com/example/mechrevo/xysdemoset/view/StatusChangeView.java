@@ -38,7 +38,7 @@ public class StatusChangeView extends View {
 
         //灰色圆角矩形画笔
         mRoundGrayPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mRoundGrayPaint.setStrokeWidth(12);
+        mRoundGrayPaint.setStrokeWidth(20);
         mRoundGrayPaint.setStyle(Paint.Style.FILL);
         mRoundGrayPaint.setColor(getResources().getColor(R.color.colorGray));
         mRoundGrayPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -64,7 +64,6 @@ public class StatusChangeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         drawLeftTxt(canvas);
-
     }
 
     private void drawLeftTxt(Canvas canvas) {
