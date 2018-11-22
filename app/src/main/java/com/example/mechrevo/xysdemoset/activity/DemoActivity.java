@@ -166,13 +166,13 @@ public class DemoActivity extends AppCompatActivity {
 
         final AnimatorSet animatorSetR = new AnimatorSet();
         animatorSetR.playTogether(ivXAnimR, ivYAnimR, translaXR,llColorXR,llMoveXR);
-        animatorSetR.setDuration(500);
+        animatorSetR.setDuration(300);
 
 
         llColorContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animatorSet.setDuration(500);
+                animatorSet.setDuration(300);
                 if (!isFirst) {
                     animatorSet.start();
                 } else {
