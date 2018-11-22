@@ -8,22 +8,31 @@
     tools:context=".activity.DemoActivity">
 
     <TextView
-        android:id="@+id/tvSwitch"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="@dimen/dp_40"
-        android:layout_marginTop="@dimen/dp_40"
-        android:gravity="center"
-        android:text="开关" />
-
-    <LinearLayout
-        android:id="@+id/llColorContainer"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvTop"
+        android:layout_width="57dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/dp_40"
+        android:layout_marginBottom="@dimen/dp_40"
+        android:background="@drawable/bg"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:paddingRight="@dimen/dp_10"
+        android:paddingBottom="5dp"
+        android:text="+关注"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+
+    <LinearLayout
+        android:id="@+id/llColorContainer"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@drawable/bg_left"
-        android:gravity="center">
+        android:gravity="center"
+        tools:showIn="@layout/activity_demo">
 
         <LinearLayout
             android:id="@+id/llMove"
@@ -42,15 +51,24 @@
 
         <TextView
             android:id="@+id/tvFocus"
-            android:text="+关注"
-            android:gravity="center"
-            android:textSize="11sp"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="+关注"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSwitch"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginTop="@dimen/dp_40"
+        android:gravity="center"
+        android:text="开关" />
 
 
     <ViewStub

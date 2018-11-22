@@ -19,7 +19,9 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewStub;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -52,6 +54,10 @@ public class DemoActivity extends AppCompatActivity {
     private String[] str = new String[]{"厉害", "哈哈", "地方"};
     private boolean isFirst = true;
 
+    int width = 30;
+
+    private boolean isInited = false;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +66,16 @@ public class DemoActivity extends AppCompatActivity {
         mViewPager = findViewById(R.id.viewpager);
         loveLayout = findViewById(R.id.lllayout);
         tabLayout = findViewById(R.id.tabLayout);
-
         ViewStub viewStub = findViewById(R.id.viewstub);
         viewStub.inflate();
+
+        TextView textView = findViewById(R.id.tvTop);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doScale(v);
+            }
+        });
 
 //        try {
 //            Socket mSocket = new Socket("www.baidu.com",443);
@@ -135,6 +148,56 @@ public class DemoActivity extends AppCompatActivity {
         setTabWidth(tabLayout, 50);
     }
 
+    private void doScale(final View v) {
+
+        if (isFirst) {
+            Animation animation = AnimationUtils.loadAnimation(this, R.anim.scalex);
+            animation.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    v.setBackgroundResource(R.drawable.louzhu);
+                    ((TextView) v).setText("");
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            v.startAnimation(animation);
+        } else {
+
+
+            Animation animationReverse = AnimationUtils.loadAnimation(this, R.anim.scalereversex);
+            animationReverse.setAnimationListener(new Animation.AnimationListener() {
+                @Override
+                public void onAnimationStart(Animation animation) {
+
+                }
+
+                @Override
+                public void onAnimationEnd(Animation animation) {
+                    v.setBackgroundResource(R.drawable.bg);
+                    ((TextView) v).setText("+关注");
+                }
+
+                @Override
+                public void onAnimationRepeat(Animation animation) {
+
+                }
+            });
+            v.startAnimation(animationReverse);
+        }
+
+        isFirst = !isFirst;
+
+    }
+
     private void animA() {
         final LinearLayout llColorContainer = findViewById(R.id.llColorContainer);
 
@@ -146,7 +209,6 @@ public class DemoActivity extends AppCompatActivity {
 
         ObjectAnimator ivXAnim = ObjectAnimator.ofFloat(ivMove, "scaleX", 0f, 1f);
         ObjectAnimator ivYAnim = ObjectAnimator.ofFloat(ivMove, "scaleY", 0f, 1f);
-
 
         ObjectAnimator llMoveX = ObjectAnimator.ofFloat(llMove, "translationX", 0, DisplayUtils.dip2px(this, 15));
 
@@ -177,9 +239,9 @@ public class DemoActivity extends AppCompatActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedFraction = animation.getAnimatedFraction();
-                Log.d("BobX",animatedFraction+"  ");
+                Log.d("BobX", animatedFraction + "  ");
                 if (animatedFraction > 0.5f) {
-                    llColorContainer.setBackgroundResource(R.drawable.bg_left);
+//                    mLlContainer.setBackgroundResource(R.drawable.bg_left);
                 }
             }
         });
@@ -188,10 +250,10 @@ public class DemoActivity extends AppCompatActivity {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float animatedFraction = animation.getAnimatedFraction();
-                Log.d("BobX",animatedFraction+"Rever");
+                Log.d("BobX", animatedFraction + "Rever");
 
-                if (animatedFraction< 0.5f) {
-                    llColorContainer.setBackgroundResource(R.drawable.bg);
+                if (animatedFraction > 0.5f) {
+//                    mLlContainer.setBackgroundResource(R.drawable.bg);
                 }
             }
         });
@@ -204,7 +266,7 @@ public class DemoActivity extends AppCompatActivity {
                 if (!isFirst) {
                     animatorSet.start();
                 } else {
-                    animatorSetR.start();
+                    //animatorSetR.start();
                 }
                 isFirst = !isFirst;
 
