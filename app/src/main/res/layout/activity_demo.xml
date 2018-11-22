@@ -27,7 +27,7 @@
 
         <LinearLayout
             android:id="@+id/llMove"
-            android:layout_width="40dp"
+            android:layout_width="20dp"
             android:layout_height="30dp"
             android:gravity="center">
 

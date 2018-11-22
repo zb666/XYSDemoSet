@@ -145,7 +145,7 @@ public class DemoActivity extends AppCompatActivity {
 
         ObjectAnimator llMoveX = ObjectAnimator.ofFloat(llMove, "translationX", 0, DisplayUtils.dip2px(this, 15));
 
-        ObjectAnimator translaX = ObjectAnimator.ofFloat(tvMove, "translationX", 0, DisplayUtils.dip2px(this, 27));
+        ObjectAnimator translaX = ObjectAnimator.ofFloat(tvMove, "translationX", 0, DisplayUtils.dip2px(this, 28));
 
         ObjectAnimator llColorX = ObjectAnimator.ofFloat(llColorContainer, "scaleX", 1f, 0.7f);
 
@@ -157,7 +157,7 @@ public class DemoActivity extends AppCompatActivity {
         ObjectAnimator ivXAnimR = ObjectAnimator.ofFloat(ivMove, "scaleX", 1f, 0f);
         ObjectAnimator ivYAnimR = ObjectAnimator.ofFloat(ivMove, "scaleY", 1f, 0f);
 
-        ObjectAnimator translaXR = ObjectAnimator.ofFloat(tvMove, "translationX", -DisplayUtils.dip2px(this, 20));
+        ObjectAnimator translaXR = ObjectAnimator.ofFloat(tvMove, "translationX", -DisplayUtils.dip2px(this, 10));
 
         ObjectAnimator llMoveXR = ObjectAnimator.ofFloat(llMove, "translationX", -DisplayUtils.dip2px(this, 15));
 
