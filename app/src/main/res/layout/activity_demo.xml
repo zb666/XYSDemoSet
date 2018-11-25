@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".activity.DemoActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:overScrollMode="never"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
     <TextView
         android:id="@+id/tvTop"
         android:layout_width="57dp"

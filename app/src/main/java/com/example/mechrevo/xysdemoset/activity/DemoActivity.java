@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -31,6 +33,7 @@ import com.bumptech.glide.Glide;
 import com.example.mechrevo.xysdemoset.A;
 import com.example.mechrevo.xysdemoset.DisplayUtils;
 import com.example.mechrevo.xysdemoset.R;
+import com.example.mechrevo.xysdemoset.adapter.UserAdapter;
 import com.example.mechrevo.xysdemoset.fm.OneFm;
 import com.example.mechrevo.xysdemoset.fm.ThreeFm;
 import com.example.mechrevo.xysdemoset.fm.TwoFm;
@@ -40,6 +43,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.net.Socket;
+import java.util.List;
 
 import javax.net.SocketFactory;
 import javax.net.ssl.SSLSocketFactory;
@@ -57,12 +61,16 @@ public class DemoActivity extends AppCompatActivity {
     int width = 30;
 
     private boolean isInited = false;
+    private RecyclerView mRecyclerView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
         animA();
+
+        mRecyclerView = findViewById(R.id.recycleview);
+
         mViewPager = findViewById(R.id.viewpager);
         loveLayout = findViewById(R.id.lllayout);
         tabLayout = findViewById(R.id.tabLayout);
@@ -76,6 +84,9 @@ public class DemoActivity extends AppCompatActivity {
                 doScale(v);
             }
         });
+
+
+        //然后修改集合重新刷新
 
 //        try {
 //            Socket mSocket = new Socket("www.baidu.com",443);
