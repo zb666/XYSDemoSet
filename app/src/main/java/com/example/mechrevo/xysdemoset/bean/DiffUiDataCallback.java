@@ -49,8 +49,9 @@ public class DiffUiDataCallback<T extends DiffUiDataCallback.DiDataDiffer<T>> ex
     }
 
     public interface DiDataDiffer<T> {
+        //比如这里比较的是id
         boolean isSame(T old);
-
+        //这里比较的是Id和其他内容
         boolean isContentSame(T old);
     }
 }
